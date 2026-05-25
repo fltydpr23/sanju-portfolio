@@ -1,22 +1,28 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect } from "react";
 
 export default function FluidBackground() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 40, mass: 0.5 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 40, mass: 0.5 });
 
   useEffect(() => {
+    // Detect if device has a fine pointer (mouse/stylus) vs coarse (touch)
+    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!hasFinePointer) return;
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
+      mouseX.set(e.clientX - 200);
+      mouseY.set(e.clientY - 200);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -67,15 +73,9 @@ export default function FluidBackground() {
 
       {/* Mouse reactive soft glow */}
       <motion.div
-        animate={{
-          x: mousePosition.x - 200,
-          y: mousePosition.y - 200,
-        }}
-        transition={{
-          type: "spring",
-          damping: 40,
-          stiffness: 100,
-          mass: 0.5
+        style={{
+          x: springX,
+          y: springY,
         }}
         className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-white/20 blur-[80px]"
       />

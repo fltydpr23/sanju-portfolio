@@ -9,7 +9,7 @@ interface Particle {
   vy: number;
   radius: number;
   maxRadius: number;
-  color: string;
+  sprite: HTMLCanvasElement | null;
   alpha: number;
   decay: number;
 }
@@ -40,8 +40,31 @@ export default function SensoryCanvas() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
+    // Pre-render soft watercolor sprites for high performance drawImage calls
+    const spriteSize = 256;
+    const sprites: (HTMLCanvasElement | null)[] = COLORS.map((colorStr) => {
+      if (typeof document === "undefined") return null;
+      const offscreen = document.createElement("canvas");
+      offscreen.width = spriteSize;
+      offscreen.height = spriteSize;
+      const oCtx = offscreen.getContext("2d");
+      if (oCtx) {
+        const center = spriteSize / 2;
+        const grad = oCtx.createRadialGradient(center, center, 0, center, center, center);
+        grad.addColorStop(0, colorStr);
+        grad.addColorStop(1, "rgba(249, 248, 246, 0)"); // Fades to transparent
+        oCtx.fillStyle = grad;
+        oCtx.beginPath();
+        oCtx.arc(center, center, center, 0, Math.PI * 2);
+        oCtx.fill();
+        return offscreen;
+      }
+      return null;
+    });
+
     const createParticle = (x: number, y: number) => {
-      const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      const idx = Math.floor(Math.random() * COLORS.length);
+      const sprite = sprites[idx];
       const maxRadius = Math.random() * 80 + 40;
       const angle = Math.random() * Math.PI * 2;
       const speed = Math.random() * 1.5;
@@ -53,7 +76,7 @@ export default function SensoryCanvas() {
         vy: Math.sin(angle) * speed,
         radius: 5,
         maxRadius,
-        color,
+        sprite,
         alpha: 0.8,
         decay: Math.random() * 0.005 + 0.003,
       });
@@ -98,19 +121,17 @@ export default function SensoryCanvas() {
           continue;
         }
 
-        ctx.beginPath();
-        // Use soft blending mode to mimic watercolor layers
-        ctx.globalCompositeOperation = "multiply";
-        ctx.globalAlpha = p.alpha;
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        
-        // Gradient fill for sensory watercolor diffusion
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
-        grad.addColorStop(0, p.color);
-        grad.addColorStop(1, "rgba(249, 248, 246, 0)"); // Fades to background sand color
-        
-        ctx.fillStyle = grad;
-        ctx.fill();
+        if (p.sprite) {
+          ctx.globalCompositeOperation = "multiply";
+          ctx.globalAlpha = p.alpha;
+          ctx.drawImage(
+            p.sprite,
+            p.x - p.radius,
+            p.y - p.radius,
+            p.radius * 2,
+            p.radius * 2
+          );
+        }
       }
 
       animationFrameId = requestAnimationFrame(animate);
