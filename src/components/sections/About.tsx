@@ -1,33 +1,76 @@
 "use client";
 
 import FadeIn from "@/components/ui/FadeIn";
-import RevealImage from "@/components/ui/RevealImage";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
+const images = [
+  { src: "/Sanju pics/img-2.jpeg", alt: "Sanjana working with a child" },
+  { src: "/Sanju pics/img-13.jpeg", alt: "Group art therapy session" },
+  { src: "/Sanju pics/img-9.jpeg", alt: "Children hugging in the studio" },
+];
 
 export default function About() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4500); // 4.5 seconds per slide
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="about" className="py-20 md:py-32 relative">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 lg:gap-24 items-center">
+          
+          {/* Image Slideshow */}
+          <div className="relative w-full aspect-[4/5] lg:aspect-auto lg:h-[650px] rounded-[32px] overflow-hidden group shadow-2xl shadow-charcoal/5">
+            <AnimatePresence>
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={images[currentIndex].src}
+                  alt={images[currentIndex].alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                />
+              </motion.div>
+            </AnimatePresence>
+            
+            {/* Dots Pagination */}
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2.5 z-10">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                    i === currentIndex ? "bg-white w-6" : "bg-white/50 hover:bg-white/80"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
 
-          {/* Image — full width on mobile, natural aspect ratio */}
-          <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[600px]">
-            <RevealImage
-              src="/clay-hands.png"
-              alt="Child's hands in an art therapy clay session"
-              width={800}
-              height={700}
-              className="h-full w-full"
-              direction="left"
-            />
+            {/* Subtle inner shadow for dots visibility */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-charcoal/30 to-transparent pointer-events-none" />
+            
             {/* Floating enso decoration — hidden on mobile to avoid overflow */}
             <motion.div
               initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
               whileInView={{ opacity: 0.12, scale: 1, rotate: 10 }}
               viewport={{ once: true }}
               transition={{ duration: 2, delay: 0.5 }}
-              className="hidden md:block absolute -bottom-8 -right-8 w-36 h-36 lg:w-40 lg:h-40 pointer-events-none"
+              className="hidden md:block absolute -bottom-8 -right-8 w-36 h-36 lg:w-40 lg:h-40 pointer-events-none z-20"
             >
               <Image src="/abstract-circle.png" alt="" width={200} height={200} className="w-full h-full object-contain" />
             </motion.div>
