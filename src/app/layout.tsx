@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "A safe place where your child will be understood. Art therapy, sensory play, and emotional expression for neurodivergent children in a premium therapeutic environment.",
 };
 
+import SmoothScroll from "@/components/ui/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,11 +27,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans text-charcoal bg-sand">
+      <body className="min-h-screen flex flex-col font-sans text-charcoal bg-sand">
         <div className="noise-overlay"></div>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

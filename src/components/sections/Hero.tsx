@@ -88,7 +88,7 @@ export default function Hero() {
         >
           <a
             href="#approach"
-            className="group flex flex-col items-center gap-3 text-charcoal/60 hover:text-charcoal transition-colors"
+            className="group flex flex-col items-center gap-3 text-charcoal/60 hover:text-charcoal transition-colors p-4 -m-4"
           >
             <span className="text-xs uppercase tracking-widest">Explore</span>
             <div className="w-[1px] h-10 bg-charcoal/20 relative overflow-hidden">

@@ -34,7 +34,7 @@ export default function Services() {
           {services.map((service, idx) => (
             <FadeIn key={service.title} delay={idx * 0.1}>
               {/* Mobile: stacked. Desktop: row with hover arrow */}
-              <div className="group py-7 md:py-12 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-6 hover:bg-white/40 transition-colors duration-500 px-4 md:px-6 -mx-4 md:-mx-6 rounded-2xl">
+              <a href="#contact" className="group py-7 md:py-12 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-6 hover:bg-white/40 transition-colors duration-500 px-4 md:px-6 -mx-4 md:-mx-6 rounded-2xl">
                 <div className="flex-1">
                   <h3 className="text-xl md:text-2xl font-serif text-charcoal mb-2 md:mb-3 group-hover:text-clay transition-colors duration-300">
                     {service.title}
@@ -48,7 +48,7 @@ export default function Services() {
                   <span className="text-xs tracking-widest uppercase mr-3">Inquire</span>
                   <ArrowRight size={18} strokeWidth={1} />
                 </div>
-              </div>
+              </a>
             </FadeIn>
           ))}
         </div>

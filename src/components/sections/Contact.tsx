@@ -73,7 +73,7 @@ export default function Contact() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       disabled={status === "sending"}
-                      className="bg-transparent border-b border-sand/20 pb-2 text-lg focus:outline-none focus:border-peach transition-colors disabled:opacity-50"
+                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors disabled:opacity-50"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -85,7 +85,7 @@ export default function Contact() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={status === "sending"}
-                      className="bg-transparent border-b border-sand/20 pb-2 text-lg focus:outline-none focus:border-peach transition-colors disabled:opacity-50"
+                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors disabled:opacity-50"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -96,7 +96,7 @@ export default function Contact() {
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       disabled={status === "sending"}
-                      className="bg-transparent border-b border-sand/20 pb-2 text-lg focus:outline-none focus:border-peach transition-colors resize-none disabled:opacity-50"
+                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors resize-none disabled:opacity-50"
                     />
                   </div>
                   <button 

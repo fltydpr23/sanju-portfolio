@@ -88,7 +88,7 @@ export default function Navigation() {
           {/* Mobile hamburger button */}
           <button 
             onClick={toggleMenu} 
-            className="md:hidden z-50 text-charcoal hover:scale-110 active:scale-90 transition-transform p-2 focus:outline-none"
+            className="md:hidden z-50 text-charcoal hover:scale-110 active:scale-90 transition-transform p-3 focus:outline-none"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
@@ -111,29 +111,29 @@ export default function Navigation() {
             <div className="absolute bottom-[10%] right-[-10%] w-[80vw] h-[80vw] rounded-full bg-peach/25 blur-[120px] pointer-events-none -z-10" />
             
             <nav className="flex flex-col items-center gap-8 text-center">
-              <motion.div variants={linkVariants}>
+              <motion.div variants={linkVariants} className="w-full">
                 <Link 
                   href="#about" 
                   onClick={() => setIsOpen(false)}
-                  className="text-3xl font-serif text-charcoal hover:text-clay transition-colors"
+                  className="block w-full py-3 text-3xl font-serif text-charcoal hover:text-clay transition-colors"
                 >
                   About
                 </Link>
               </motion.div>
-              <motion.div variants={linkVariants}>
+              <motion.div variants={linkVariants} className="w-full">
                 <Link 
                   href="#approach" 
                   onClick={() => setIsOpen(false)}
-                  className="text-3xl font-serif text-charcoal hover:text-clay transition-colors"
+                  className="block w-full py-3 text-3xl font-serif text-charcoal hover:text-clay transition-colors"
                 >
                   Approach
                 </Link>
               </motion.div>
-              <motion.div variants={linkVariants}>
+              <motion.div variants={linkVariants} className="w-full">
                 <Link 
                   href="#services" 
                   onClick={() => setIsOpen(false)}
-                  className="text-3xl font-serif text-charcoal hover:text-clay transition-colors"
+                  className="block w-full py-3 text-3xl font-serif text-charcoal hover:text-clay transition-colors"
                 >
                   Services
                 </Link>

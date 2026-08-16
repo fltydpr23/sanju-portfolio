@@ -48,16 +48,20 @@ export default function About() {
             </AnimatePresence>
             
             {/* Dots Pagination */}
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2.5 z-10">
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-4 z-10">
               {images.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
-                  className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                    i === currentIndex ? "bg-white w-6" : "bg-white/50 hover:bg-white/80"
-                  }`}
+                  className="p-3 -m-3 focus:outline-none"
                   aria-label={`Go to slide ${i + 1}`}
-                />
+                >
+                  <div 
+                    className={`h-2 rounded-full transition-all duration-500 mx-auto ${
+                      i === currentIndex ? "bg-white w-6" : "w-2 bg-white/50 hover:bg-white/80"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
 
