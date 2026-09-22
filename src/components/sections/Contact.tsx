@@ -8,22 +8,41 @@ export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "success">("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email) return;
+    if (!name.trim() || !email.trim()) return;
 
-    setStatus("sending");
-    
-    // Simulate a slow, grounding API connection
-    await new Promise((resolve) => setTimeout(resolve, 2200));
-    
+    const recipient = "hello@sanjanavijai.com";
+    const subject = encodeURIComponent(`Art Therapy Inquiry from ${name.trim()}`);
+    const bodyContent = `Hi Sanjana,
+
+My name is ${name.trim()} (${email.trim()}).
+
+A bit about my child:
+${message.trim() || "N/A"}
+
+Looking forward to connecting with you.`;
+
+    const body = encodeURIComponent(bodyContent);
+    const mailtoUrl = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+    // Open user's default email client
+    window.location.href = mailtoUrl;
+
     setStatus("success");
   };
 
+  const handleReset = () => {
+    setName("");
+    setEmail("");
+    setMessage("");
+    setStatus("idle");
+  };
+
   return (
-    <section id="contact" className="py-24 md:py-32 bg-charcoal text-sand relative">
+    <section id="contact" className="py-24 md:py-32 bg-charcoal dark:bg-charcoal-deep text-sand relative transition-colors">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
           
@@ -39,8 +58,8 @@ export default function Contact() {
               <div className="space-y-6">
                 <div>
                   <span className="block text-sm tracking-widest uppercase text-sand/50 mb-2">Email</span>
-                  <a href="mailto:hello@sanjanart.com" className="text-xl font-serif hover:text-peach transition-colors">
-                    hello@sanjanart.com
+                  <a href="mailto:hello@sanjanavijai.com" className="text-xl font-serif hover:text-peach transition-colors">
+                    hello@sanjanavijai.com
                   </a>
                 </div>
                 <div>
@@ -60,7 +79,7 @@ export default function Contact() {
                   key="form"
                   initial={{ opacity: 1 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.8 }}
+                  transition={{ duration: 0.6 }}
                   className="flex flex-col gap-8" 
                   onSubmit={handleSubmit}
                 >
@@ -70,10 +89,10 @@ export default function Contact() {
                       type="text" 
                       id="name"
                       required
+                      placeholder="e.g. Maya Sharma"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      disabled={status === "sending"}
-                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors disabled:opacity-50"
+                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors placeholder:text-sand/30"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -82,10 +101,10 @@ export default function Contact() {
                       type="email" 
                       id="email"
                       required
+                      placeholder="e.g. maya@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      disabled={status === "sending"}
-                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors disabled:opacity-50"
+                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors placeholder:text-sand/30"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -93,25 +112,17 @@ export default function Contact() {
                     <textarea 
                       id="message"
                       rows={4}
+                      placeholder="Feel free to share what your child enjoys or what you hope to explore together..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      disabled={status === "sending"}
-                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors resize-none disabled:opacity-50"
+                      className="bg-transparent border-b border-sand/20 pt-2 pb-3 text-lg focus:outline-none focus:border-peach transition-colors resize-none placeholder:text-sand/30"
                     />
                   </div>
                   <button 
                     type="submit"
-                    disabled={status === "sending"}
-                    className="mt-4 py-4 rounded-full bg-sand text-charcoal hover:bg-peach transition-colors font-medium tracking-wide flex items-center justify-center gap-3 disabled:bg-sand/20 disabled:text-sand/50"
+                    className="mt-4 py-4 rounded-full bg-sand text-charcoal hover:bg-peach transition-all font-medium tracking-wide flex items-center justify-center gap-3 active:scale-[0.99]"
                   >
-                    {status === "sending" ? (
-                      <>
-                        <span className="w-4 h-4 rounded-full border border-sand border-t-transparent animate-spin inline-block" />
-                        Sending...
-                      </>
-                    ) : (
-                      "Send Message"
-                    )}
+                    Send Message
                   </button>
                 </motion.form>
               ) : (
@@ -119,16 +130,22 @@ export default function Contact() {
                   key="success"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
                   className="text-center py-8"
                 >
                   <h3 className="text-3xl font-serif text-peach mb-6">Message Received</h3>
                   <p className="text-lg text-sand/80 font-light mb-4">
                     Thank you for sharing. Take a deep breath.
                   </p>
-                  <p className="text-sm text-sand/50 font-light">
-                    I will read through your note with care and get back to you within 2–3 days.
+                  <p className="text-sm text-sand/50 font-light mb-8 max-w-sm mx-auto">
+                    Your email app has been opened with your message pre-filled. I will read through your note with care and get back to you within 2–3 days.
                   </p>
+                  <button
+                    onClick={handleReset}
+                    className="text-xs uppercase tracking-widest text-peach/80 hover:text-peach underline underline-offset-4 transition-colors"
+                  >
+                    Send another note
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>

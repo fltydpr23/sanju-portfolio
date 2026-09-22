@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-sand: #f9f8f6;
@@ -8,9 +9,7 @@
   --color-lavender: #d3cddc;
   --color-moss: #c7d1c1;
   --color-charcoal: #33312e;
-
-  --color-background: var(--color-sand);
-  --color-foreground: var(--color-charcoal);
+  --color-charcoal-deep: #1f1d1b;
 
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
@@ -19,6 +18,28 @@
 :root {
   --background: #f9f8f6;
   --foreground: #33312e;
+  color-scheme: light;
+}
+
+.dark, html.dark {
+  --background: #1f1d1b;
+  --foreground: #f9f8f6;
+  color-scheme: dark;
+}
+
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body.has-custom-cursor,
@@ -26,20 +47,9 @@ body.has-custom-cursor * {
   cursor: none !important;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-}
-
 /* Hide scrollbars for Lenis smooth scroll */
 ::-webkit-scrollbar {
   display: none;
-}
-html {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
 .noise-overlay {
@@ -50,7 +60,7 @@ html {
   height: 100vh;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.04;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
   transform: translateZ(0);

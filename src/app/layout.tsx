@@ -18,6 +18,8 @@ export const metadata: Metadata = {
 };
 
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import SensoryPreloader from "@/components/ui/SensoryPreloader";
 
 export default function RootLayout({
   children,
@@ -28,10 +30,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${playfair.variable} antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col font-sans text-charcoal bg-sand">
-        <div className="noise-overlay"></div>
-        <SmoothScroll>{children}</SmoothScroll>
+      <body className="min-h-screen flex flex-col font-sans text-charcoal bg-sand dark:bg-charcoal dark:text-sand transition-colors duration-1000">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <SensoryPreloader />
+          <div className="noise-overlay dark:opacity-[0.02]"></div>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

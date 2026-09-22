@@ -23,7 +23,7 @@ export default function Hero() {
           alt="Watercolor art — representing emotional expression"
           width={600}
           height={600}
-          className="w-full h-full object-cover mix-blend-multiply"
+          className="w-full h-full object-cover"
           priority
         />
       </motion.div>
@@ -40,7 +40,7 @@ export default function Hero() {
           alt=""
           width={400}
           height={400}
-          className="w-full h-full object-cover mix-blend-multiply"
+          className="w-full h-full object-cover"
           priority
         />
       </motion.div>
@@ -52,7 +52,7 @@ export default function Hero() {
         transition={{ duration: 2.5, delay: 1.2, ease: "easeOut" }}
         className="absolute bottom-[-10%] left-[-8%] w-[50vw] h-[50vw] md:w-[36vw] md:h-[36vw] pointer-events-none z-0"
       >
-        <Image src="/abstract-circle.png" alt="" width={500} height={500} className="w-full h-full object-contain" />
+        <Image src="/abstract-circle.png" alt="" width={500} height={500} className="w-full h-full object-contain" priority />
       </motion.div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-20 text-center flex flex-col items-center">
@@ -62,12 +62,12 @@ export default function Hero() {
           transition={{ duration: 1.5, ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number] }}
           className="mb-6 md:mb-8"
         >
-          <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-charcoal/60 mb-4 md:mb-6 block">
+          <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-charcoal/60 dark:text-sand/60 mb-4 md:mb-6 block transition-colors">
             Art & Sensory Therapy
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-charcoal leading-[1.1] tracking-tight max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-charcoal dark:text-sand leading-[1.1] tracking-tight max-w-4xl mx-auto transition-colors">
             A safe place where your child will be{" "}
-            <span className="italic text-clay">understood</span>.
+            <span className="italic text-clay dark:text-peach">understood</span>.
           </h1>
         </motion.div>
 
@@ -76,7 +76,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.5, ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number] }}
         >
-          <p className="text-base md:text-xl text-charcoal/70 max-w-xl md:max-w-2xl mx-auto mb-10 md:mb-12 font-light leading-relaxed px-2">
+          <p className="text-base md:text-xl text-charcoal/70 dark:text-sand/70 max-w-xl md:max-w-2xl mx-auto mb-10 md:mb-12 font-light leading-relaxed px-2 transition-colors">
             Helping neurodivergent children express, regulate, and reconnect through creativity, movement, and a deeply emotionally safe therapeutic environment.
           </p>
         </motion.div>
@@ -88,12 +88,12 @@ export default function Hero() {
         >
           <a
             href="#approach"
-            className="group flex flex-col items-center gap-3 text-charcoal/60 hover:text-charcoal transition-colors p-4 -m-4"
+            className="group flex flex-col items-center gap-3 text-charcoal/60 dark:text-sand/60 hover:text-charcoal dark:hover:text-sand transition-colors p-4 -m-4"
           >
             <span className="text-xs uppercase tracking-widest">Explore</span>
-            <div className="w-[1px] h-10 bg-charcoal/20 relative overflow-hidden">
+            <div className="w-[1px] h-10 bg-charcoal/20 dark:bg-sand/20 relative overflow-hidden transition-colors">
               <motion.div
-                className="absolute top-0 left-0 w-full h-1/2 bg-charcoal"
+                className="absolute top-0 left-0 w-full h-1/2 bg-charcoal dark:bg-sand"
                 animate={{ y: ["-100%", "200%"] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               />

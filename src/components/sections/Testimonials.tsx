@@ -15,15 +15,15 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 md:py-28 bg-white/30 backdrop-blur-md border-y border-charcoal/5">
+    <section className="py-20 md:py-28 bg-white/30 dark:bg-charcoal/30 backdrop-blur-md border-y border-charcoal/5 dark:border-sand/5 transition-colors">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col gap-14 md:gap-24">
           {testimonials.map((testimonial, idx) => (
             <FadeIn key={idx} delay={0.1} className="max-w-3xl mx-auto text-center">
-              <p className="text-xl sm:text-2xl md:text-4xl font-serif text-charcoal leading-snug mb-6 md:mb-8">
+              <p className="text-xl sm:text-2xl md:text-4xl font-serif text-charcoal dark:text-sand leading-snug mb-6 md:mb-8 transition-colors">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
-              <span className="text-xs tracking-widest uppercase text-clay">
+              <span className="text-xs tracking-widest uppercase text-clay dark:text-peach transition-colors">
                 &mdash; {testimonial.author}
               </span>
             </FadeIn>

@@ -4,9 +4,9 @@ import FadeIn from "@/components/ui/FadeIn";
 
 export default function ForParents() {
   return (
-    <section className="py-24 md:py-32 bg-charcoal text-sand relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-charcoal dark:bg-charcoal-deep text-sand relative overflow-hidden transition-colors">
       {/* Soft glowing ambient light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] md:w-[50vw] md:h-[50vw] rounded-full bg-clay/20 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] md:w-[50vw] md:h-[50vw] rounded-full bg-clay/20 dark:bg-peach/10 blur-[100px] pointer-events-none transition-colors" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="max-w-3xl mx-auto text-center">

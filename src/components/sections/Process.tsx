@@ -26,8 +26,8 @@ export default function Process() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-3xl mb-16">
           <FadeIn>
-            <h2 className="text-4xl md:text-5xl font-serif text-charcoal mb-6">The Approach</h2>
-            <p className="text-lg text-charcoal/70 font-light leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-serif text-charcoal dark:text-sand mb-6 transition-colors">The Approach</h2>
+            <p className="text-lg text-charcoal/70 dark:text-sand/70 font-light leading-relaxed transition-colors">
               Therapy here doesn't look like sitting still in a chair. It looks like messy hands, safe movement, and following the child's natural curiosity.
             </p>
           </FadeIn>
@@ -36,13 +36,13 @@ export default function Process() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {steps.map((step, idx) => (
             <FadeIn key={step.number} delay={idx * 0.15}>
-              <div className="relative p-8 h-full rounded-[2rem] border border-charcoal/5 bg-gradient-to-b from-white/40 to-transparent overflow-hidden group hover:border-clay/20 transition-colors duration-500">
-                <div className="absolute top-0 right-0 p-8 text-6xl font-serif italic text-charcoal/5 group-hover:text-clay/10 transition-colors duration-500">
+              <div className="relative p-8 h-full rounded-[2rem] border border-charcoal/5 dark:border-sand/5 bg-gradient-to-b from-white/40 dark:from-charcoal-deep/40 to-transparent overflow-hidden group hover:border-clay/20 dark:hover:border-peach/20 transition-colors duration-500">
+                <div className="absolute top-0 right-0 p-8 text-6xl font-serif italic text-charcoal/5 dark:text-sand/5 group-hover:text-clay/10 dark:group-hover:text-peach/10 transition-colors duration-500">
                   {step.number}
                 </div>
                 <div className="relative z-10 pt-16">
-                  <h3 className="text-xl font-serif text-charcoal mb-4">{step.title}</h3>
-                  <p className="text-charcoal/70 font-light leading-relaxed">
+                  <h3 className="text-xl font-serif text-charcoal dark:text-sand mb-4 transition-colors">{step.title}</h3>
+                  <p className="text-charcoal/70 dark:text-sand/70 font-light leading-relaxed transition-colors">
                     {step.description}
                   </p>
                 </div>

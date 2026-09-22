@@ -43,6 +43,7 @@ export default function About() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center"
+                  priority={currentIndex === 0}
                 />
               </motion.div>
             </AnimatePresence>
@@ -76,37 +77,37 @@ export default function About() {
               transition={{ duration: 2, delay: 0.5 }}
               className="hidden md:block absolute -bottom-8 -right-8 w-36 h-36 lg:w-40 lg:h-40 pointer-events-none z-20"
             >
-              <Image src="/abstract-circle.png" alt="" width={200} height={200} className="w-full h-full object-contain" />
+              <Image src="/abstract-circle.png" alt="" width={200} height={200} className="w-full h-full object-contain" priority />
             </motion.div>
           </div>
 
           {/* Text */}
           <div className="flex flex-col justify-center">
             <FadeIn>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-charcoal mb-6 md:mb-8 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-charcoal dark:text-sand mb-6 md:mb-8 leading-tight transition-colors">
                 Hi, I&apos;m Sanjana.{" "}
-                <span className="text-clay italic block mt-1">Let&apos;s slow down together.</span>
+                <span className="text-clay dark:text-peach italic block mt-1 transition-colors">Let&apos;s slow down together.</span>
               </h2>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <p className="text-base md:text-lg text-charcoal/80 mb-5 font-light leading-relaxed">
+              <p className="text-base md:text-lg text-charcoal/80 dark:text-sand/80 mb-5 font-light leading-relaxed transition-colors">
                 As a trained art therapist, I&apos;ve spent years observing how traditional therapeutic spaces can often feel overwhelming, sterile, or fundamentally misaligned with how neurodivergent minds naturally operate.
               </p>
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <p className="text-base md:text-lg text-charcoal/80 mb-8 font-light leading-relaxed">
+              <p className="text-base md:text-lg text-charcoal/80 dark:text-sand/80 mb-8 font-light leading-relaxed transition-colors">
                 I believe that therapy shouldn&apos;t be about &quot;fixing&quot; behaviors. It&apos;s about creating an emotionally safe, deeply attuned environment where a child feels seen. Through art, sensory play, and gentle movement, we build a bridge to expression that doesn&apos;t rely solely on words.
               </p>
             </FadeIn>
 
             <FadeIn delay={0.4}>
-              <div className="pt-6 border-t border-charcoal/10">
-                <p className="text-xs tracking-widest uppercase text-charcoal/60 mb-3">My Values</p>
-                <ul className="flex flex-wrap gap-3 text-sm text-charcoal/80">
+              <div className="pt-6 border-t border-charcoal/10 dark:border-sand/10 transition-colors">
+                <p className="text-xs tracking-widest uppercase text-charcoal/60 dark:text-sand/60 mb-3 transition-colors">My Values</p>
+                <ul className="flex flex-wrap gap-3 text-sm text-charcoal/80 dark:text-sand/80">
                   {["Neuro-Affirming", "Trauma-Informed", "Sensory-Safe", "Child-Led"].map((v) => (
-                    <li key={v} className="px-4 py-2 rounded-full border border-charcoal/10 bg-white/30 backdrop-blur-sm">
+                    <li key={v} className="px-4 py-2 rounded-full border border-charcoal/10 dark:border-sand/10 bg-white/30 dark:bg-charcoal-deep/50 backdrop-blur-sm transition-colors">
                       {v}
                     </li>
                   ))}

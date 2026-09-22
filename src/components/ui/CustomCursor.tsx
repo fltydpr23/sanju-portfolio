@@ -66,7 +66,7 @@ export default function CustomCursor() {
     <>
       {/* Paintbrush tip - snappy */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-multiply"
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{ x: cursorX, y: cursorY }}
       >
         {/* The SVG paintbrush */}

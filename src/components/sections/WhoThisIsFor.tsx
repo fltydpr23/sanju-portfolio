@@ -23,11 +23,11 @@ const audiences = [
 
 export default function WhoThisIsFor() {
   return (
-    <section className="py-20 md:py-28 bg-white/40 backdrop-blur-xl border-y border-charcoal/5">
+    <section className="py-20 md:py-28 bg-white/40 dark:bg-charcoal-deep/40 backdrop-blur-xl border-y border-charcoal/5 dark:border-sand/5 transition-colors">
       <div className="container mx-auto px-6 md:px-12">
         <FadeIn className="text-center mb-10 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif text-charcoal mb-4 md:mb-6">Who I Support</h2>
-          <p className="text-base md:text-lg text-charcoal/70 max-w-2xl mx-auto font-light">
+          <h2 className="text-3xl md:text-5xl font-serif text-charcoal dark:text-sand mb-4 md:mb-6 transition-colors">Who I Support</h2>
+          <p className="text-base md:text-lg text-charcoal/70 dark:text-sand/70 max-w-2xl mx-auto font-light transition-colors">
             Therapy tailored to the unique nervous system of your child. No forced compliance, just gentle connection.
           </p>
         </FadeIn>
@@ -35,9 +35,9 @@ export default function WhoThisIsFor() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
           {audiences.map((item, idx) => (
             <FadeIn key={item.title} delay={idx * 0.1} className="h-full">
-              <div className="p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl bg-sand/40 border border-charcoal/5 hover:bg-white/60 transition-colors duration-500 h-full flex flex-col justify-center">
-                <h3 className="text-lg md:text-xl font-serif text-charcoal mb-3 md:mb-4">{item.title}</h3>
-                <p className="text-sm md:text-base text-charcoal/70 font-light leading-relaxed">
+              <div className="p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl bg-sand/40 dark:bg-charcoal/40 border border-charcoal/5 dark:border-sand/5 hover:bg-white/60 dark:hover:bg-charcoal-deep/60 transition-colors duration-500 h-full flex flex-col justify-center">
+                <h3 className="text-lg md:text-xl font-serif text-charcoal dark:text-sand mb-3 md:mb-4 transition-colors">{item.title}</h3>
+                <p className="text-sm md:text-base text-charcoal/70 dark:text-sand/70 font-light leading-relaxed transition-colors">
                   {item.description}
                 </p>
               </div>

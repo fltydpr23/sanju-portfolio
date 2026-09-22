@@ -51,8 +51,9 @@ export default function SensoryCanvas() {
       if (oCtx) {
         const center = spriteSize / 2;
         const grad = oCtx.createRadialGradient(center, center, 0, center, center, center);
+        const zeroAlpha = colorStr.replace(/[\d.]+\)$/, "0)");
         grad.addColorStop(0, colorStr);
-        grad.addColorStop(1, "rgba(249, 248, 246, 0)"); // Fades to transparent
+        grad.addColorStop(1, zeroAlpha);
         oCtx.fillStyle = grad;
         oCtx.beginPath();
         oCtx.arc(center, center, center, 0, Math.PI * 2);
@@ -122,7 +123,6 @@ export default function SensoryCanvas() {
         }
 
         if (p.sprite) {
-          ctx.globalCompositeOperation = "multiply";
           ctx.globalAlpha = p.alpha;
           ctx.drawImage(
             p.sprite,
@@ -151,7 +151,6 @@ export default function SensoryCanvas() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-70 transition-opacity duration-1000"
-      style={{ mixBlendMode: "multiply" }}
     />
   );
 }

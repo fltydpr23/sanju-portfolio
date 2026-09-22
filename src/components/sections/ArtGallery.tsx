@@ -73,13 +73,13 @@ function GalleryItem({ src, alt, label, index, className = "", parallaxOffset = 
 
 export default function ArtGallery() {
   return (
-    <section className="py-24 md:py-40 relative overflow-hidden bg-sand/30">
+    <section className="py-24 md:py-40 relative overflow-hidden bg-sand/30 dark:bg-charcoal-deep/40 transition-colors">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <FadeIn className="mb-16 md:mb-24 text-center md:text-left">
-          <p className="text-xs tracking-[0.25em] uppercase text-charcoal/50 mb-4">Inside the Studio</p>
-          <h2 className="text-4xl md:text-6xl font-serif text-charcoal leading-tight">
+          <p className="text-xs tracking-[0.25em] uppercase text-charcoal/50 dark:text-sand/50 mb-4 transition-colors">Inside the Studio</p>
+          <h2 className="text-4xl md:text-6xl font-serif text-charcoal dark:text-sand leading-tight transition-colors">
             Where creativity <br />
-            <span className="italic text-clay">meets healing.</span>
+            <span className="italic text-clay dark:text-peach transition-colors">meets healing.</span>
           </h2>
         </FadeIn>
 
