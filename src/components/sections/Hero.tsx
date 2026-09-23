@@ -50,7 +50,7 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.6, rotate: -40 }}
         animate={{ opacity: 0.06, scale: 1, rotate: 0 }}
         transition={{ duration: 2.5, delay: 1.2, ease: "easeOut" }}
-        className="absolute bottom-[-10%] left-[-8%] w-[50vw] h-[50vw] md:w-[36vw] md:h-[36vw] pointer-events-none z-0"
+        className="absolute bottom-0 left-0 w-[50vw] h-[50vw] md:bottom-[-10%] md:left-[-8%] md:w-[36vw] md:h-[36vw] pointer-events-none z-0"
       >
         <Image src="/abstract-circle.png" alt="" width={500} height={500} className="w-full h-full object-contain" priority />
       </motion.div>

@@ -3,11 +3,12 @@
 import FadeIn from "@/components/ui/FadeIn";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const images = [
-  { src: "/Sanju pics/img-2.jpeg", alt: "Sanjana working with a child" },
   { src: "/Sanju pics/img-13.jpeg", alt: "Group art therapy session" },
+  { src: "/Sanju pics/img-2.jpeg", alt: "Sanjana working with a child" },
   { src: "/Sanju pics/img-9.jpeg", alt: "Children hugging in the studio" },
 ];
 
@@ -112,6 +113,27 @@ export default function About() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.5}>
+              <div className="pt-6 transition-colors">
+                <p className="text-xs tracking-widest uppercase text-charcoal/60 dark:text-sand/60 mb-3 transition-colors">Credentials</p>
+                <ul className="flex flex-wrap gap-3 text-sm text-charcoal/80 dark:text-sand/80">
+                  {["MSc Psychology", "Art Therapy Certified", "Mental Health First Aid"].map((c) => (
+                    <li key={c} className="px-3 py-1.5 rounded-full border border-charcoal/10 dark:border-sand/10 bg-clay/10 dark:bg-sage/10 backdrop-blur-sm transition-colors text-xs">
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.6}>
+              <div className="pt-8">
+                <Link href="/about" className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-clay dark:bg-peach text-white dark:text-charcoal-deep font-medium tracking-wide hover:opacity-90 transition-opacity shadow-sm">
+                  Learn more about my practice
+                </Link>
               </div>
             </FadeIn>
           </div>
